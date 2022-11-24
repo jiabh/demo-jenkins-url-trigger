@@ -4,6 +4,12 @@ pipeline {
     triggers {
         URLTrigger(
             cronTabSpec: '* * * * *',
+            /**
+             * This param is not mentioned in the documentation of URLTrigger plugin,
+             * but it's necessary when Jenkins build-in node is disabled.
+             * See source code for more details:
+             * https://github.com/jenkinsci/urltrigger-plugin/search?q=triggerLabel
+             */
             triggerLabel: 'windows',
             entries: [
                 URLTriggerEntry( 
@@ -14,6 +20,7 @@ pipeline {
                     contentTypes: [
                         JsonContent(
                             [
+                                // Monitor "test-v0.0.1.txt" in release for example.
                                 JsonContentEntry(jsonPath: '$.assets[?(@.name =~ /test-v.*?\\.txt/)].name')
                             ])
                     ]
