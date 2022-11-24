@@ -8,10 +8,13 @@ pipeline {
             entries: [
                 URLTriggerEntry( 
                     url: 'https://api.github.com/repos/jiabh/test-jenkins-url-trigger/releases/latest',
+                    requestHeaders: [
+                        RequestHeader( headerName: "Accept" , headerValue: "application/json" )
+                    ],
                     contentTypes: [
-                        TextContent(
+                        JsonContent(
                             [
-                                TextContentEntry(regEx: 'test-v.*?.txt')
+                                JsonContentEntry(jsonPath: '$.assets[?(@.name =~ /test-v.*?\\.txt/)].name')
                             ])
                     ]
                 )
