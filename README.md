@@ -1,4 +1,4 @@
-# Test Jenkins URLTrigger plugin
+# Jenkins URLTrigger plugin demo
 
 <div>
     <img alt="Jenkins" src="https://img.shields.io/badge/Jenkins-2.361.4-D24939?logo=jenkins">
